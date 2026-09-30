@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MathJax 2 vs 3 vs 4 Comparison – Live LaTeX Preview Online</title>
+    <meta
+      name="description"
+      content="Paste LaTeX, MathML or HTML and instantly compare how it renders in MathJax 2.7, MathJax 3 and MathJax 4 side by side. Free, fast, no sign-up."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <meta name="theme-color" content="#1f4e79" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="MathJax Compare" />
+    <meta property="og:title" content="MathJax 2 vs 3 vs 4 – Compare LaTeX Rendering Side by Side" />
+    <meta
+      property="og:description"
+      content="See how your equations render in MathJax 2, 3 and 4 at the same time. Free online MathJax version comparison tool."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MathJax 2 vs 3 vs 4 comparison tool" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta name="twitter:title" content="MathJax 2 vs 3 vs 4 – Compare LaTeX Rendering Side by Side" />
+    <meta
+      name="twitter:description"
+      content="See how your equations render in MathJax 2, 3 and 4 at the same time."
+    />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="/src/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "%VITE_SITE_URL%/#website",
+            "name": "MathJax Compare",
+            "url": "%VITE_SITE_URL%/",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "%VITE_SITE_URL%/#app",
+            "name": "MathJax Compare",
+            "url": "%VITE_SITE_URL%/",
+            "image": "%VITE_SITE_URL%/og-image.jpg",
+            "description": "Free online tool to compare LaTeX and MathML rendering in MathJax 2, MathJax 3 and MathJax 4 side by side.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "featureList": "Side-by-side rendering in MathJax 2.7.9, 3.2.2 and 4.1.3; LaTeX, MathML and HTML input; mhchem chemistry support",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Why does my equation look different in MathJax 3 or 4 than in MathJax 2?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "MathJax 3 was a complete rewrite and MathJax 4 ships new fonts and line breaking, so spacing, glyphs and supported extensions can differ. Some MathJax 2 extensions and configuration options were renamed or removed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my content sent to a server?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. All rendering happens in your browser. Your content is only saved in your browser's local storage."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which math delimiters are supported?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Inline math with $...$ or \\(...\\), and display math with $$...$$ or \\[...\\]. MathML and HTML are also supported."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does it support chemistry equations with mhchem?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The mhchem extension is loaded in all three versions, so \\ce{...} works everywhere."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="container site-header">
+      <a href="/" class="brand">
+        <img src="/favicon.svg" alt="" width="28" height="28" />
+        MathJax Compare
+      </a>
+      <nav aria-label="Page sections">
+        <ul>
+          <li><a href="#how-to-use">How to use</a></li>
+          <li><a href="#differences">Differences</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section id="compare" aria-labelledby="page-title">
+        <h1 id="page-title">MathJax 2 vs 3 vs 4: Compare LaTeX Rendering Side by Side</h1>
+        <p class="lead">
+          Paste your LaTeX, MathML or HTML below and see instantly how it renders in
+          <strong>MathJax 2.7.9</strong>, <strong>MathJax 3.2.2</strong> and <strong>MathJax 4.1.3</strong>.
+          Useful when upgrading MathJax or checking content before publishing.
+        </p>
+        <div id="root"></div>
+        <noscript><p>This tool needs JavaScript to render math with MathJax.</p></noscript>
+      </section>
+
+      <section id="how-to-use" aria-labelledby="how-to-use-heading" class="content">
+        <h2 id="how-to-use-heading">How to use the MathJax comparison tool</h2>
+        <ol>
+          <li>Paste or type your content into the editor. HTML tags are rendered as-is.</li>
+          <li>Wrap inline math in <code>$...$</code> or <code>\(...\)</code>, and display math in <code>$$...$$</code> or <code>\[...\]</code>.</li>
+          <li>The three previews update automatically. Your content is saved in your browser.</li>
+        </ol>
+      </section>
+
+      <section id="differences" aria-labelledby="differences-heading" class="content">
+        <h2 id="differences-heading">Key differences between MathJax 2, 3 and 4</h2>
+        <h3>MathJax 2</h3>
+        <p>
+          The long-standing version used by many sites. It is configured with
+          <code>MathJax.Hub.Config</code> and a <code>text/x-mathjax-config</code> script, and re-rendering uses
+          <code>MathJax.Hub.Queue</code>. It is slower than newer versions and no longer actively developed.
+        </p>
+        <h3>MathJax 3</h3>
+        <p>
+          A full rewrite in TypeScript with much faster rendering. Configuration moved to a
+          <code>window.MathJax</code> object, re-rendering uses <code>MathJax.typesetPromise()</code>, and some
+          version 2 extensions and output modes were renamed or dropped. Output can differ slightly from version 2.
+        </p>
+        <h3>MathJax 4</h3>
+        <p>
+          Builds on version 3 with new default fonts covering many more characters, automatic line breaking for
+          long equations, and improved accessibility. Glyph shapes and spacing can look different from version 3.
+        </p>
+      </section>
+
+      <section id="faq" aria-labelledby="faq-heading" class="content">
+        <h2 id="faq-heading">Frequently asked questions</h2>
+        <h3>Why does my equation look different in MathJax 3 or 4 than in MathJax 2?</h3>
+        <p>
+          MathJax 3 was a complete rewrite and MathJax 4 ships new fonts and line breaking, so spacing, glyphs and
+          supported extensions can differ. Some MathJax 2 extensions and configuration options were renamed or removed.
+        </p>
+        <h3>Is my content sent to a server?</h3>
+        <p>No. All rendering happens in your browser. Your content is only saved in your browser's local storage.</p>
+        <h3>Which math delimiters are supported?</h3>
+        <p>
+          Inline math with <code>$...$</code> or <code>\(...\)</code>, and display math with <code>$$...$$</code> or
+          <code>\[...\]</code>. MathML and HTML are also supported.
+        </p>
+        <h3>Does it support chemistry equations with mhchem?</h3>
+        <p>Yes. The mhchem extension is loaded in all three versions, so <code>\ce{...}</code> works everywhere.</p>
+      </section>
+    </main>
+
+    <footer class="container">
+      <p>
+        <small>
+          Free MathJax version comparison tool. MathJax is a project of the
+          <a href="https://www.mathjax.org/">MathJax Consortium</a>. See the
+          <a href="https://docs.mathjax.org/">official MathJax documentation</a>.
+        </small>
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
