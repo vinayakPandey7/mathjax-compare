@@ -44,7 +44,8 @@ For example, if $a = 3$ and $b = 4$ then $c = \\sqrt{3^2 + 4^2} = 5$.</p>
   },
   long: {
     label: 'Long equation',
-    content: `<p>A long inline expression: \\((x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8 + x_9 + x_{10} + x_{11} + x_{12} + x_{13} + x_{14} + x_{15})^2\\)</p>
+    content: `<p>Plain inline sum: \\(x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8 + x_9 + x_{10} + x_{11} + x_{12} + x_{13} + x_{14} + x_{15}\\)</p>
+<p>Inline sum in brackets: \\((x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 + x_8 + x_9 + x_{10} + x_{11} + x_{12})^2\\)</p>
 $$f(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4 + a_5 x^5 + a_6 x^6 + a_7 x^7 + a_8 x^8 + a_9 x^9 + a_{10} x^{10} + a_{11} x^{11}$$`,
   },
   mathml: {

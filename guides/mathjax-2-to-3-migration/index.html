@@ -217,8 +217,9 @@
             <code>loader: { load: ['input/asciimath'] }</code> to your configuration.
           </li>
           <li>
-            <strong>No automatic line breaking in MathJax 3.</strong> MathJax 2's
-            <code>linebreaks: { automatic: true }</code> has no MathJax 3 equivalent. It returns in MathJax 4.
+            <strong>No automatic line breaking in MathJax 3.</strong> MathJax 2 can break long equations when you set
+            <code>CommonHTML: { linebreaks: { automatic: true } }</code> (it's off by default). MathJax 3 has no
+            equivalent, so long equations overflow. Line breaking returns in MathJax 4.
           </li>
         </ul>
 
@@ -232,8 +233,9 @@
             which covers many more characters. Glyph shapes and spacing can look slightly different from version 3.
           </li>
           <li>
-            <strong>Line breaking is back.</strong> Long inline math wraps by default. Long display equations still
-            overflow unless you enable breaking:
+            <strong>Line breaking is back.</strong> Long inline math wraps by default at top-level operators such as
+            <code>+</code> and <code>=</code>, but not inside brackets like <code>(a + b + c)^2</code>. Long display
+            equations still overflow unless you enable breaking:
             <pre><code>window.MathJax = {
   output: { displayOverflow: 'linebreak' }
 };</code></pre>
