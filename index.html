@@ -2,33 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--partial:head-->
     <title>MathJax Live Preview Online – Compare MathJax 2, 3 &amp; 4</title>
     <meta
       name="description"
       content="Free MathJax live preview: paste LaTeX, MathML or HTML and see it rendered instantly in MathJax 2.7, 3 and 4 side by side. Online, fast, no sign-up."
     />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="%VITE_SITE_URL%/" />
-    <meta name="theme-color" content="#1f4e79" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="MathJax Compare" />
     <meta property="og:title" content="MathJax Live Preview – Compare MathJax 2, 3 and 4 Side by Side" />
     <meta
       property="og:description"
       content="See how your equations render in MathJax 2, 3 and 4 at the same time. Free online MathJax version comparison tool."
     />
     <meta property="og:url" content="%VITE_SITE_URL%/" />
-    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="MathJax 2 vs 3 vs 4 comparison tool" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
     <meta name="twitter:title" content="MathJax Live Preview – Compare MathJax 2, 3 and 4 Side by Side" />
     <meta
       name="twitter:description"
@@ -37,7 +25,6 @@
 
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="stylesheet" href="/src/styles.css" />
 
     <script type="application/ld+json">
       {
@@ -97,7 +84,15 @@
                 "name": "Does it support chemistry equations with mhchem?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. The mhchem extension is loaded in all three versions, so \\ce{...} works everywhere."
+                  "text": "Yes. The mhchem extension is loaded in all three versions, so \\ce{...} works everywhere. MathJax 2.7 uses an older version of mhchem by default, so newer syntax such as \\pu{...} may not render there."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I share my equations with someone?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Click Copy share link. Your content is compressed into the link itself, so nothing is uploaded and anyone who opens the link sees the same preview."
                 }
               }
             ]
@@ -107,19 +102,7 @@
     </script>
   </head>
   <body>
-    <header class="container site-header">
-      <a href="/" class="brand">
-        <img src="/favicon.svg" alt="" width="28" height="28" />
-        MathJax Compare
-      </a>
-      <nav aria-label="Page sections">
-        <ul>
-          <li><a href="#how-to-use">How to use</a></li>
-          <li><a href="#differences">Differences</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
-    </header>
+    <!--partial:header-->
 
     <main class="container">
       <section id="compare" aria-labelledby="page-title">
@@ -136,9 +119,10 @@
       <section id="how-to-use" aria-labelledby="how-to-use-heading" class="content">
         <h2 id="how-to-use-heading">How to use the MathJax comparison tool</h2>
         <ol>
-          <li>Paste or type your content into the editor. HTML tags are rendered as-is.</li>
+          <li>Paste or type your content into the editor, or pick one of the examples. HTML tags are rendered as-is.</li>
           <li>Wrap inline math in <code>$...$</code> or <code>\(...\)</code>, and display math in <code>$$...$$</code> or <code>\[...\]</code>.</li>
           <li>The three previews update automatically. Your content is saved in your browser.</li>
+          <li>Click <strong>Copy share link</strong> to share exactly what you see with someone else.</li>
         </ol>
       </section>
 
@@ -178,19 +162,38 @@
           <code>\[...\]</code>. MathML and HTML are also supported.
         </p>
         <h3>Does it support chemistry equations with mhchem?</h3>
-        <p>Yes. The mhchem extension is loaded in all three versions, so <code>\ce{...}</code> works everywhere.</p>
+        <p>
+          Yes. The mhchem extension is loaded in all three versions, so <code>\ce{...}</code> works everywhere.
+          MathJax 2.7 uses an older version of mhchem by default, so newer syntax such as <code>\pu{...}</code> may
+          not render there. See the <a href="/guides/mhchem-examples/">mhchem examples guide</a>.
+        </p>
+        <h3>How do I share my equations with someone?</h3>
+        <p>
+          Click <strong>Copy share link</strong>. Your content is compressed into the link itself, so nothing is
+          uploaded and anyone who opens the link sees the same preview.
+        </p>
+      </section>
+
+      <section id="guides" aria-labelledby="guides-heading" class="content">
+        <h2 id="guides-heading">MathJax guides</h2>
+        <ul>
+          <li>
+            <a href="/guides/mathjax-2-to-3-migration/">How to migrate from MathJax 2 to MathJax 3 and 4</a>: configuration,
+            API and extension changes.
+          </li>
+          <li>
+            <a href="/guides/mathjax-delimiters/">MathJax delimiters explained</a>: how to enable <code>$...$</code>, escape
+            dollar signs and stop MathJax from processing parts of a page.
+          </li>
+          <li>
+            <a href="/guides/mhchem-examples/">mhchem chemistry examples for MathJax</a>: reactions, charges, states and
+            units with copy-ready code.
+          </li>
+        </ul>
       </section>
     </main>
 
-    <footer class="container">
-      <p>
-        <small>
-          Free MathJax version comparison tool. MathJax is a project of the
-          <a href="https://www.mathjax.org/">MathJax Consortium</a>. See the
-          <a href="https://docs.mathjax.org/">official MathJax documentation</a>.
-        </small>
-      </p>
-    </footer>
+    <!--partial:footer-->
 
     <script type="module" src="/src/main.jsx"></script>
   </body>

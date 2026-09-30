@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--partial:head-->
+    <title>MathJax Delimiters Explained – Enable $...$, Escape Dollar Signs</title>
+    <meta
+      name="description"
+      content="Why $...$ doesn't render in MathJax by default, how to enable dollar-sign delimiters in MathJax 2, 3 and 4, escape literal dollars and skip parts of a page."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/guides/mathjax-delimiters/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MathJax Delimiters Explained – Enable $...$, Escape Dollar Signs" />
+    <meta
+      property="og:description"
+      content="Configure inline and display math delimiters in MathJax 2, 3 and 4, with copy-ready code."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/guides/mathjax-delimiters/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "headline": "MathJax Delimiters Explained – Enable $...$, Escape Dollar Signs",
+            "description": "Why $...$ doesn't render in MathJax by default, how to enable dollar-sign delimiters in MathJax 2, 3 and 4, escape literal dollars and skip parts of a page.",
+            "url": "%VITE_SITE_URL%/guides/mathjax-delimiters/",
+            "image": "%VITE_SITE_URL%/og-image.jpg",
+            "inLanguage": "en",
+            "dateModified": "2026-09-30",
+            "author": { "@type": "Organization", "name": "MathJax Compare", "url": "%VITE_SITE_URL%/" },
+            "isPartOf": { "@id": "%VITE_SITE_URL%/#website" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "%VITE_SITE_URL%/" },
+              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "%VITE_SITE_URL%/guides/" },
+              { "@type": "ListItem", "position": 3, "name": "MathJax delimiters", "item": "%VITE_SITE_URL%/guides/mathjax-delimiters/" }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!--partial:header-->
+
+    <main class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li aria-current="page">MathJax delimiters</li>
+        </ol>
+      </nav>
+
+      <article class="guide">
+        <h1>MathJax Delimiters Explained</h1>
+        <p class="lead">
+          MathJax only renders text wrapped in <em>delimiters</em>, the markers that say where math starts and ends.
+          Anything outside them stays plain text. Here's how the defaults work and how to change them in MathJax 2, 3
+          and 4.
+        </p>
+        <a class="try-link" href="/#example=text">Try inline and display math in the live preview →</a>
+
+        <h2>Default delimiters</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Default in MathJax 2, 3 and 4</th>
+              <th scope="col">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inline math</td>
+              <td><code>\(...\)</code> only</td>
+              <td><code>The area is \(\pi r^2\).</code></td>
+            </tr>
+            <tr>
+              <td>Display math</td>
+              <td><code>$$...$$</code> and <code>\[...\]</code></td>
+              <td><code>$$\int_0^1 x^2\,dx = \tfrac{1}{3}$$</code></td>
+            </tr>
+            <tr>
+              <td>Environments</td>
+              <td>Rendered even without delimiters</td>
+              <td><code>\begin{align} ... \end{align}</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Why doesn't <code>$...$</code> work?</h2>
+        <p>
+          Single dollar signs are <strong>off by default</strong> in every MathJax version, because dollar signs are
+          common in normal text such as prices. If your content uses <code>$x^2$</code>, you have to turn them on.
+        </p>
+
+        <h2>How to enable <code>$...$</code> for inline math</h2>
+        <h3>MathJax 3 and 4</h3>
+        <pre><code>&lt;script&gt;
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"&gt;&lt;/script&gt;</code></pre>
+        <h3>MathJax 2</h3>
+        <pre><code>&lt;script type="text/x-mathjax-config"&gt;
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML"&gt;&lt;/script&gt;</code></pre>
+        <p>
+          Backslashes are doubled (<code>'\\('</code>) because this is a JavaScript string. Keep
+          <code>\(...\)</code> in the list so existing content still works.
+        </p>
+
+        <h2>Showing a literal dollar sign</h2>
+        <p>
+          Once <code>$</code> is a delimiter, write <code>\$</code> to show a real dollar sign, for example
+          <code>It costs \$5</code>. This escaping is controlled by <code>processEscapes</code>:
+        </p>
+        <ul>
+          <li>MathJax 3 and 4: on by default.</li>
+          <li>MathJax 2: off by default, so add <code>processEscapes: true</code> as shown above.</li>
+        </ul>
+
+        <h2>Stopping MathJax in part of a page</h2>
+        <p>
+          MathJax never processes math inside <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code>,
+          <code>&lt;textarea&gt;</code>, <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> elements. To skip any
+          other element, add a class:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Purpose</th>
+              <th scope="col">MathJax 2</th>
+              <th scope="col">MathJax 3 and 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Skip this element</td>
+              <td><code>tex2jax_ignore</code></td>
+              <td><code>mathjax_ignore</code></td>
+            </tr>
+            <tr>
+              <td>Process it anyway (inside an ignored element)</td>
+              <td><code>tex2jax_process</code></td>
+              <td><code>mathjax_process</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code>&lt;div class="mathjax_ignore"&gt;
+  Price range: $10 to $20 (not math)
+&lt;/div&gt;</code></pre>
+
+        <h2>Common problems</h2>
+        <ul>
+          <li>
+            <strong>Math shows as raw text.</strong> Check that the math is wrapped in delimiters your configuration
+            enables, and that the configuration is set before the MathJax script loads.
+          </li>
+          <li>
+            <strong>Math added later doesn't render.</strong> MathJax only scans the page once on load. Call
+            <code>MathJax.typesetPromise()</code> (MathJax 3 and 4) after inserting content. See the
+            <a href="/guides/mathjax-2-to-3-migration/">migration guide</a> for the MathJax 2 equivalent.
+          </li>
+          <li>
+            <strong>Prices turn into math.</strong> You enabled <code>$...$</code>; escape the dollars as
+            <code>\$</code> or wrap the text in <code>mathjax_ignore</code>.
+          </li>
+        </ul>
+      </article>
+    </main>
+
+    <!--partial:footer-->
+  </body>
+</html>

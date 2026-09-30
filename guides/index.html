@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--partial:head-->
+    <title>MathJax Guides – Migration, Delimiters and mhchem Examples</title>
+    <meta
+      name="description"
+      content="Practical MathJax guides: migrate from MathJax 2 to 3 and 4, configure math delimiters, and write chemistry equations with mhchem. Copy-ready code."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/guides/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MathJax Guides – Migration, Delimiters and mhchem Examples" />
+    <meta
+      property="og:description"
+      content="Practical MathJax guides with copy-ready code and a live preview in MathJax 2, 3 and 4."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/guides/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "%VITE_SITE_URL%/" },
+          { "@type": "ListItem", "position": 2, "name": "Guides", "item": "%VITE_SITE_URL%/guides/" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!--partial:header-->
+
+    <main class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Guides</li>
+        </ol>
+      </nav>
+
+      <div class="guide">
+        <h1>MathJax Guides</h1>
+        <p class="lead">
+          Short, practical guides for writing and upgrading MathJax content. Every example can be opened in the
+          <a href="/">live preview</a> to compare MathJax 2, 3 and 4 side by side.
+        </p>
+
+        <article>
+          <h2><a href="/guides/mathjax-2-to-3-migration/">How to migrate from MathJax 2 to MathJax 3 and 4</a></h2>
+          <p>
+            Replace the script tag, convert <code>MathJax.Hub.Config</code> to the new configuration object, update
+            re-rendering code and check the extensions that changed.
+          </p>
+        </article>
+
+        <article>
+          <h2><a href="/guides/mathjax-delimiters/">MathJax delimiters explained</a></h2>
+          <p>
+            Why <code>$...$</code> doesn't work by default, how to enable it, how to escape dollar signs and how to
+            stop MathJax from processing parts of a page.
+          </p>
+        </article>
+
+        <article>
+          <h2><a href="/guides/mhchem-examples/">mhchem chemistry examples for MathJax</a></h2>
+          <p>
+            Chemical formulas, reactions, charges, states, precipitates and units with <code>\ce</code> and
+            <code>\pu</code>, plus how to enable mhchem in each MathJax version.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <!--partial:footer-->
+  </body>
+</html>

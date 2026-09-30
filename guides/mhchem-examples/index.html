@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--partial:head-->
+    <title>mhchem Examples for MathJax – Chemical Equations with \ce</title>
+    <meta
+      name="description"
+      content="Copy-ready mhchem examples for MathJax: chemical formulas, charges, states, reactions, equilibrium, precipitates, isotopes and units with \ce and \pu."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/guides/mhchem-examples/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="mhchem Examples for MathJax – Chemical Equations with \ce" />
+    <meta
+      property="og:description"
+      content="Chemical formulas, reactions and units in MathJax with mhchem. Copy the code, see the result."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/guides/mhchem-examples/" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "headline": "mhchem Examples for MathJax – Chemical Equations with \\ce",
+            "description": "Copy-ready mhchem examples for MathJax: chemical formulas, charges, states, reactions, equilibrium, precipitates, isotopes and units with \\ce and \\pu.",
+            "url": "%VITE_SITE_URL%/guides/mhchem-examples/",
+            "image": "%VITE_SITE_URL%/og-image.jpg",
+            "inLanguage": "en",
+            "dateModified": "2026-09-30",
+            "author": { "@type": "Organization", "name": "MathJax Compare", "url": "%VITE_SITE_URL%/" },
+            "isPartOf": { "@id": "%VITE_SITE_URL%/#website" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "%VITE_SITE_URL%/" },
+              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "%VITE_SITE_URL%/guides/" },
+              { "@type": "ListItem", "position": 3, "name": "mhchem examples", "item": "%VITE_SITE_URL%/guides/mhchem-examples/" }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!--partial:header-->
+
+    <main class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li aria-current="page">mhchem examples</li>
+        </ol>
+      </nav>
+
+      <article class="guide">
+        <h1>mhchem Examples for MathJax</h1>
+        <p class="lead">
+          mhchem is the MathJax extension for chemistry. Write formulas and reactions inside <code>\ce{...}</code> and
+          units inside <code>\pu{...}</code>, and mhchem handles subscripts, charges and arrows for you. The results
+          below are rendered live with MathJax 4.
+        </p>
+        <a class="try-link" href="/#example=chemistry">Compare chemistry in MathJax 2, 3 and 4 →</a>
+
+        <h2>Formulas, charges and states</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">What</th>
+              <th scope="col">Code</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Formula</td>
+              <td><code>\ce{H2SO4}</code></td>
+              <td>\(\ce{H2SO4}\)</td>
+            </tr>
+            <tr>
+              <td>Ion charge</td>
+              <td><code>\ce{SO4^2-}</code></td>
+              <td>\(\ce{SO4^2-}\)</td>
+            </tr>
+            <tr>
+              <td>Cation</td>
+              <td><code>\ce{Fe^3+}</code></td>
+              <td>\(\ce{Fe^3+}\)</td>
+            </tr>
+            <tr>
+              <td>State of matter</td>
+              <td><code>\ce{NaCl(aq)}</code></td>
+              <td>\(\ce{NaCl(aq)}\)</td>
+            </tr>
+            <tr>
+              <td>Hydrate</td>
+              <td><code>\ce{CuSO4 * 5H2O}</code></td>
+              <td>\(\ce{CuSO4 * 5H2O}\)</td>
+            </tr>
+            <tr>
+              <td>Isotope</td>
+              <td><code>\ce{^{227}_{90}Th+}</code></td>
+              <td>\(\ce{^{227}_{90}Th+}\)</td>
+            </tr>
+            <tr>
+              <td>Oxidation states</td>
+              <td><code>\ce{Fe^{II}Fe^{III}2O4}</code></td>
+              <td>\(\ce{Fe^{II}Fe^{III}2O4}\)</td>
+            </tr>
+            <tr>
+              <td>Bonds</td>
+              <td><code>\ce{CH3-CH=CH2}</code></td>
+              <td>\(\ce{CH3-CH=CH2}\)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Reactions and arrows</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">What</th>
+              <th scope="col">Code</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reaction</td>
+              <td><code>\ce{2H2 + O2 -&gt; 2H2O}</code></td>
+              <td>\(\ce{2H2 + O2 -> 2H2O}\)</td>
+            </tr>
+            <tr>
+              <td>Equilibrium</td>
+              <td><code>\ce{N2 + 3H2 &lt;=&gt; 2NH3}</code></td>
+              <td>\(\ce{N2 + 3H2 &lt;=&gt; 2NH3}\)</td>
+            </tr>
+            <tr>
+              <td>Gas released</td>
+              <td><code>\ce{Zn + 2HCl -&gt; ZnCl2 + H2 ^}</code></td>
+              <td>\(\ce{Zn + 2HCl -> ZnCl2 + H2 ^}\)</td>
+            </tr>
+            <tr>
+              <td>Precipitate</td>
+              <td><code>\ce{Ba^2+ + SO4^2- -&gt; BaSO4 v}</code></td>
+              <td>\(\ce{Ba^2+ + SO4^2- -> BaSO4 v}\)</td>
+            </tr>
+            <tr>
+              <td>Condition above arrow</td>
+              <td><code>\ce{CaCO3 -&gt;[\Delta] CaO + CO2 ^}</code></td>
+              <td>\(\ce{CaCO3 ->[\Delta] CaO + CO2 ^}\)</td>
+            </tr>
+            <tr>
+              <td>Text above and below</td>
+              <td><code>\ce{A -&gt;[{above}][{below}] B}</code></td>
+              <td>\(\ce{A ->[{above}][{below}] B}\)</td>
+            </tr>
+            <tr>
+              <td>Half reaction</td>
+              <td><code>\ce{Fe^3+ + e- -&gt; Fe^2+}</code></td>
+              <td>\(\ce{Fe^3+ + e- -> Fe^2+}\)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Units with <code>\pu</code></h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">What</th>
+              <th scope="col">Code</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Unit</td>
+              <td><code>\pu{123 kJ/mol}</code></td>
+              <td>\(\pu{123 kJ/mol}\)</td>
+            </tr>
+            <tr>
+              <td>Scientific notation</td>
+              <td><code>\pu{1.2e3 kJ}</code></td>
+              <td>\(\pu{1.2e3 kJ}\)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>How to enable mhchem</h2>
+        <h3>MathJax 3 and 4</h3>
+        <p>
+          Nothing to do: mhchem loads automatically the first time <code>\ce</code> or <code>\pu</code> appears. To
+          load it up front instead:
+        </p>
+        <pre><code>window.MathJax = {
+  loader: { load: ['[tex]/mhchem'] },
+  tex: { packages: { '[+]': ['mhchem'] } }
+};</code></pre>
+        <h3>MathJax 2</h3>
+        <p>
+          Add the extension to your configuration. By default MathJax 2.7 loads an <strong>older version</strong> of
+          mhchem; set <code>legacy: false</code> to use the current one, which matches MathJax 3 and 4:
+        </p>
+        <pre><code>MathJax.Hub.Config({
+  TeX: {
+    extensions: ['mhchem.js'],
+    mhchem: { legacy: false }
+  }
+});</code></pre>
+        <p>
+          The older version doesn't support newer syntax such as <code>\pu</code>, so chemistry content can look
+          different between MathJax 2 and later versions. The <a href="/">live preview</a> uses the MathJax 2 default,
+          so you can see exactly where your content is affected.
+        </p>
+      </article>
+    </main>
+
+    <!--partial:footer-->
+  </body>
+</html>

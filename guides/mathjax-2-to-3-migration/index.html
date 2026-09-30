@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--partial:head-->
+    <title>MathJax 2 to 3 Migration Guide (and What Changes in MathJax 4)</title>
+    <meta
+      name="description"
+      content="Upgrade from MathJax 2 to MathJax 3 and 4 step by step: new script URLs, converting MathJax.Hub.Config, the typesetPromise API, extensions and rendering differences."
+    />
+    <link rel="canonical" href="%VITE_SITE_URL%/guides/mathjax-2-to-3-migration/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MathJax 2 to 3 Migration Guide (and What Changes in MathJax 4)" />
+    <meta
+      property="og:description"
+      content="Step-by-step MathJax upgrade guide with before/after code and a live side-by-side preview."
+    />
+    <meta property="og:url" content="%VITE_SITE_URL%/guides/mathjax-2-to-3-migration/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "headline": "MathJax 2 to 3 Migration Guide (and What Changes in MathJax 4)",
+            "description": "Upgrade from MathJax 2 to MathJax 3 and 4 step by step: new script URLs, configuration, the typesetPromise API, extensions and rendering differences.",
+            "url": "%VITE_SITE_URL%/guides/mathjax-2-to-3-migration/",
+            "image": "%VITE_SITE_URL%/og-image.jpg",
+            "inLanguage": "en",
+            "dateModified": "2026-09-30",
+            "author": { "@type": "Organization", "name": "MathJax Compare", "url": "%VITE_SITE_URL%/" },
+            "isPartOf": { "@id": "%VITE_SITE_URL%/#website" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "%VITE_SITE_URL%/" },
+              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "%VITE_SITE_URL%/guides/" },
+              { "@type": "ListItem", "position": 3, "name": "MathJax 2 to 3 migration", "item": "%VITE_SITE_URL%/guides/mathjax-2-to-3-migration/" }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!--partial:header-->
+
+    <main class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li aria-current="page">MathJax 2 to 3 migration</li>
+        </ol>
+      </nav>
+
+      <article class="guide">
+        <h1>MathJax 2 to 3 Migration Guide (and What Changes in MathJax 4)</h1>
+        <p class="lead">
+          MathJax 3 is a complete rewrite of MathJax 2, so upgrading means changing how you load, configure and call
+          MathJax. MathJax 4 keeps the version 3 API and mainly changes fonts and line breaking. This guide walks
+          through each change with before-and-after code.
+        </p>
+        <a class="try-link" href="/">Compare your content in MathJax 2, 3 and 4 →</a>
+
+        <h2>Step 1: Replace the script tag</h2>
+        <p>
+          MathJax 2 loads <code>MathJax.js</code> with a <code>?config=</code> parameter. MathJax 3 and 4 load a single
+          combined component file instead. Pick the file that matches your old configuration:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">MathJax 2 <code>?config=</code></th>
+              <th scope="col">MathJax 3 and 4 file</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>TeX-AMS_CHTML</code> or <code>TeX-AMS_HTML</code></td>
+              <td><code>tex-chtml.js</code></td>
+            </tr>
+            <tr>
+              <td><code>TeX-AMS_SVG</code></td>
+              <td><code>tex-svg.js</code></td>
+            </tr>
+            <tr>
+              <td><code>TeX-MML-AM_CHTML</code> or <code>TeX-AMS-MML_HTMLorMML</code></td>
+              <td><code>tex-mml-chtml.js</code> (AsciiMath is not included; see step 4)</td>
+            </tr>
+            <tr>
+              <td><code>MML_CHTML</code></td>
+              <td><code>mml-chtml.js</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The CDN paths differ slightly between versions. MathJax 3 files live in an <code>es5/</code> folder:</p>
+        <pre><code>&lt;!-- MathJax 2 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML"&gt;&lt;/script&gt;
+
+&lt;!-- MathJax 3 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"&gt;&lt;/script&gt;
+
+&lt;!-- MathJax 4 --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"&gt;&lt;/script&gt;</code></pre>
+
+        <h2>Step 2: Convert your configuration</h2>
+        <p>
+          MathJax 2 reads configuration from a <code>text/x-mathjax-config</code> script that calls
+          <code>MathJax.Hub.Config()</code>. MathJax 3 and 4 read a plain <code>window.MathJax</code> object, which
+          must be defined <strong>before</strong> the MathJax script loads.
+        </p>
+        <h3>Before (MathJax 2)</h3>
+        <pre><code>&lt;script type="text/x-mathjax-config"&gt;
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    },
+    TeX: {
+      extensions: ['mhchem.js'],
+      Macros: { RR: '{\\bf R}' }
+    }
+  });
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML"&gt;&lt;/script&gt;</code></pre>
+        <h3>After (MathJax 3 and 4)</h3>
+        <pre><code>&lt;script&gt;
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      macros: { RR: '{\\bf R}' }
+    }
+  };
+&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"&gt;&lt;/script&gt;</code></pre>
+        <p>What changed in this example:</p>
+        <ul>
+          <li><code>tex2jax</code> options moved into the <code>tex</code> block.</li>
+          <li><code>TeX.Macros</code> became <code>tex.macros</code> (lowercase).</li>
+          <li>
+            <code>processEscapes</code> is on by default in MathJax 3 and 4, so <code>\$</code> already shows a literal
+            dollar sign.
+          </li>
+          <li>
+            The mhchem line is gone: MathJax 3 and 4 load mhchem automatically the first time <code>\ce</code> or
+            <code>\pu</code> is used.
+          </li>
+        </ul>
+
+        <h2>Step 3: Update code that re-renders math</h2>
+        <p>
+          If your page adds math after loading (for example in a React, Vue or Angular app), the typesetting calls
+          change too:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">MathJax 2</th>
+              <th scope="col">MathJax 3 and 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>MathJax.Hub.Queue(["Typeset", MathJax.Hub, el])</code></td>
+              <td><code>MathJax.typesetPromise([el])</code></td>
+            </tr>
+            <tr>
+              <td><code>MathJax.Hub.Typeset()</code></td>
+              <td><code>MathJax.typeset()</code> (synchronous)</td>
+            </tr>
+            <tr>
+              <td><code>MathJax.Hub.Register.StartupHook("End", fn)</code></td>
+              <td><code>MathJax.startup.promise.then(fn)</code></td>
+            </tr>
+            <tr>
+              <td>No equivalent</td>
+              <td><code>MathJax.typesetClear([el])</code> before removing or replacing typeset math</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <code>typesetPromise</code> calls must not overlap. A safe pattern is to chain every call onto the startup
+          promise:
+        </p>
+        <pre><code>function typeset(elements) {
+  MathJax.startup.promise = MathJax.startup.promise
+    .then(() =&gt; MathJax.typesetPromise(elements))
+    .catch((err) =&gt; console.error('Typeset failed:', err));
+  return MathJax.startup.promise;
+}</code></pre>
+
+        <h2>Step 4: Check extensions and behaviour changes</h2>
+        <ul>
+          <li>
+            <strong><code>\color</code> works like LaTeX now.</strong> In MathJax 2, <code>\color{red}{x} + y</code>
+            colours only <code>x</code>. In MathJax 3 and 4, <code>\color</code> is a switch, so <code>+ y</code> turns
+            red too. Use <code>\textcolor{red}{x}</code> or <code>{\color{red} x}</code>, or load the
+            <code>colorv2</code> extension to keep the old behaviour.
+          </li>
+          <li>
+            <strong>mhchem is newer.</strong> MathJax 2.7 uses an older mhchem by default, while MathJax 3 and 4 use
+            the current version. Some reactions can render differently; see the
+            <a href="/guides/mhchem-examples/">mhchem examples</a>.
+          </li>
+          <li>
+            <strong>HTML-CSS output is gone.</strong> MathJax 3 and 4 offer CommonHTML (<code>chtml</code>) and SVG
+            output only.
+          </li>
+          <li>
+            <strong>Ignore classes were renamed.</strong> <code>tex2jax_ignore</code> and <code>tex2jax_process</code>
+            are now <code>mathjax_ignore</code> and <code>mathjax_process</code>.
+          </li>
+          <li>
+            <strong>AsciiMath must be loaded separately.</strong> The combined files don't include it; add
+            <code>loader: { load: ['input/asciimath'] }</code> to your configuration.
+          </li>
+          <li>
+            <strong>No automatic line breaking in MathJax 3.</strong> MathJax 2's
+            <code>linebreaks: { automatic: true }</code> has no MathJax 3 equivalent. It returns in MathJax 4.
+          </li>
+        </ul>
+
+        <h2>Step 5: What changes in MathJax 4</h2>
+        <p>
+          Code written for MathJax 3 mostly works in MathJax 4 unchanged. The differences you'll notice:
+        </p>
+        <ul>
+          <li>
+            <strong>New default font.</strong> MathJax 4 uses <code>mathjax-newcm</code>, based on New Computer Modern,
+            which covers many more characters. Glyph shapes and spacing can look slightly different from version 3.
+          </li>
+          <li>
+            <strong>Line breaking is back.</strong> Long inline math wraps by default. Long display equations still
+            overflow unless you enable breaking:
+            <pre><code>window.MathJax = {
+  output: { displayOverflow: 'linebreak' }
+};</code></pre>
+          </li>
+          <li>
+            <strong>No <code>es5/</code> folder.</strong> Load files directly, for example
+            <code>mathjax@4/tex-chtml.js</code>.
+          </li>
+        </ul>
+
+        <h2>Test before you switch</h2>
+        <p>
+          The fastest way to catch rendering differences is to paste real content from your site into the
+          <a href="/">MathJax live preview</a>, which renders it in MathJax 2.7.9, 3.2.2 and 4.1.3 side by side.
+        </p>
+        <a class="try-link" href="/#example=aligned">Try an example in the live preview →</a>
+      </article>
+    </main>
+
+    <!--partial:footer-->
+  </body>
+</html>
