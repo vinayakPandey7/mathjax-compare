@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <!--partial:head-->
-    <title>MathJax Compare – Compare MathJax Versions 2, 3 &amp; 4 (Live Preview)</title>
+    <title>MathJax &amp; LaTeX Preview Online – Compare MathJax 2, 3 &amp; 4</title>
     <meta
       name="description"
-      content="Free MathJax live preview: paste LaTeX, MathML or HTML and see it rendered instantly in MathJax 2.7, 3 and 4 side by side. Online, fast, no sign-up."
+      content="Free online MathJax and LaTeX preview. Paste LaTeX, MathML or HTML and compare how it renders in MathJax 2, 3 and 4 side by side. No sign-up."
     />
     <link rel="canonical" href="%VITE_SITE_URL%/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="MathJax Live Preview – Compare MathJax 2, 3 and 4 Side by Side" />
+    <meta property="og:title" content="MathJax &amp; LaTeX Preview Online – Compare MathJax 2, 3 and 4" />
     <meta
       property="og:description"
-      content="See how your equations render in MathJax 2, 3 and 4 at the same time. Free online MathJax version comparison tool."
+      content="Online LaTeX and MathJax preview that renders your equations in MathJax 2, 3 and 4 at the same time. Free MathJax version comparison tool."
     />
     <meta property="og:url" content="%VITE_SITE_URL%/" />
-    <meta name="twitter:title" content="MathJax Live Preview – Compare MathJax 2, 3 and 4 Side by Side" />
+    <meta name="twitter:title" content="MathJax &amp; LaTeX Preview Online – Compare MathJax 2, 3 and 4" />
     <meta
       name="twitter:description"
       content="See how your equations render in MathJax 2, 3 and 4 at the same time."
@@ -44,7 +44,7 @@
             "name": "MathJax Compare",
             "url": "%VITE_SITE_URL%/",
             "image": "%VITE_SITE_URL%/og-image.jpg",
-            "description": "Free online tool to compare LaTeX and MathML rendering in MathJax 2, MathJax 3 and MathJax 4 side by side.",
+            "description": "Free online MathJax and LaTeX preview that compares LaTeX and MathML rendering in MathJax 2, MathJax 3 and MathJax 4 side by side.",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Any",
             "browserRequirements": "Requires JavaScript",
@@ -95,6 +95,22 @@
                   "@type": "Answer",
                   "text": "Click Copy share link. Your content is compressed into the link itself, so nothing is uploaded and anyone who opens the link sees the same preview."
                 }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I preview a full LaTeX document here?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. MathJax renders math only, so this online LaTeX preview works for equations, matrices, aligned environments and chemistry, but not document commands like \\documentclass, \\section or \\includegraphics. For full documents, use a LaTeX compiler such as Overleaf."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which MathJax version should I use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For new sites, use MathJax 4. If you are on MathJax 3, upgrading to 4 is mostly a drop-in change, but check fonts and line breaking. If you are still on MathJax 2, plan a migration, because MathJax 3 and 4 use a different configuration and API."
+                }
               }
             ]
           }
@@ -107,11 +123,11 @@
 
     <main class="container">
       <section id="compare" aria-labelledby="page-title">
-        <h1 id="page-title">MathJax Live Preview: Compare MathJax 2, 3 and 4 Side by Side</h1>
+        <h1 id="page-title">MathJax &amp; LaTeX Preview Online: Compare MathJax 2, 3 and 4 Side by Side</h1>
         <p class="lead">
-          Paste your LaTeX, MathML or HTML below for an instant MathJax preview in
+          Paste your LaTeX, MathML or HTML below for an instant online preview in
           <strong>MathJax 2.7.9</strong>, <strong>MathJax 3.2.2</strong> and <strong>MathJax 4.1.3</strong>.
-          Useful when upgrading MathJax or checking content before publishing.
+          Use it as a quick MathJax tester when upgrading versions, or to preview LaTeX equations before publishing.
         </p>
         <div id="root"></div>
         <noscript><p>This tool needs JavaScript to render math with MathJax.</p></noscript>
@@ -125,6 +141,31 @@
           <li>The three previews update automatically. Your content is saved in your browser.</li>
           <li>Click <strong>Copy share link</strong> to share exactly what you see with someone else.</li>
         </ol>
+      </section>
+
+      <section id="uses" aria-labelledby="uses-heading" class="content">
+        <h2 id="uses-heading">What you can use this online MathJax preview for</h2>
+        <ul>
+          <li>
+            <strong>Online LaTeX equation preview:</strong> check that a formula renders correctly before posting it on a
+            site, forum or course platform that uses MathJax.
+          </li>
+          <li>
+            <strong>Comparing MathJax versions:</strong> see how the same content looks in MathJax 2, 3 and 4 before you
+            upgrade, and spot spacing, font and line-breaking changes.
+          </li>
+          <li>
+            <strong>MathML preview:</strong> paste <code>&lt;math&gt;</code> markup and preview it online without setting up
+            a page.
+          </li>
+          <li>
+            <strong>Debugging:</strong> find out why an equation shows as raw text or an error, for example wrong
+            delimiters or an unsupported command.
+          </li>
+          <li>
+            <strong>Sharing:</strong> send a link that opens the exact same equations in the MathJax preview.
+          </li>
+        </ul>
       </section>
 
       <section id="differences" aria-labelledby="differences-heading" class="content">
@@ -173,11 +214,28 @@
           Click <strong>Copy share link</strong>. Your content is compressed into the link itself, so nothing is
           uploaded and anyone who opens the link sees the same preview.
         </p>
+        <h3>Can I preview a full LaTeX document here?</h3>
+        <p>
+          No. MathJax renders math only, so this online LaTeX preview works for equations, matrices, aligned
+          environments and chemistry, but not document commands like <code>\documentclass</code>,
+          <code>\section</code> or <code>\includegraphics</code>. For full documents, use a LaTeX compiler such as
+          Overleaf.
+        </p>
+        <h3>Which MathJax version should I use?</h3>
+        <p>
+          For new sites, use MathJax 4. If you are on MathJax 3, upgrading to 4 is mostly a drop-in change, but check
+          fonts and line breaking. If you are still on MathJax 2, plan a migration, because MathJax 3 and 4 use a
+          different configuration and API. See <a href="/guides/mathjax-2-vs-3-vs-4/">MathJax 2 vs 3 vs 4</a>.
+        </p>
       </section>
 
       <section id="guides" aria-labelledby="guides-heading" class="content">
         <h2 id="guides-heading">MathJax guides</h2>
         <ul>
+          <li>
+            <a href="/guides/mathjax-2-vs-3-vs-4/">MathJax 2 vs 3 vs 4</a>: every difference in one table, with live
+            examples.
+          </li>
           <li>
             <a href="/guides/mathjax-2-to-3-migration/">How to migrate from MathJax 2 to MathJax 3 and 4</a>: configuration,
             API and extension changes.

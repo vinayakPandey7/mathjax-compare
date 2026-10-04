@@ -6,6 +6,7 @@ import react from '@vitejs/plugin-react';
 const pages = [
   'index.html',
   'guides/index.html',
+  'guides/mathjax-2-vs-3-vs-4/index.html',
   'guides/mathjax-2-to-3-migration/index.html',
   'guides/mathjax-delimiters/index.html',
   'guides/mhchem-examples/index.html',
